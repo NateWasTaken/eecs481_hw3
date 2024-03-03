@@ -22,6 +22,9 @@
 
 import ast
 import astor
+import random
+
+random.seed("123")
 
 class MyVisitor(ast.NodeTransformer):
     """Notes all Numbers and all Strings. Replaces all numbers with 481 and
@@ -33,6 +36,8 @@ class MyVisitor(ast.NodeTransformer):
     # automatically for us by the library. 
     def visit_Num(self, node):
         print("Visitor sees a number: ", ast.dump(node), " aka ", astor.to_source(node))
+        if (random.randint(1,100) < 10):
+            return ast.Num(value=(node.value - 1), kind=None)
         # Note how we never say "node.contents = 481" or anything like
         # that. We do not directly assign to nodes. Intead, the Visitor
         # Pattern hides that information from us. We use the return value
