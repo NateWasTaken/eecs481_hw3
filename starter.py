@@ -49,7 +49,7 @@ class MyVisitor(ast.NodeTransformer):
     def visit_BinOp(self, node):
         print("Visitor sees a BinOp: ", ast.dump(node), " aka ", astor.to_source(node))
         # Note: some students may want: return ast.Str(s=481)
-        return None
+        return node
 
 # Instead of reading from a file, the starter code always processes in 
 # a small Python expression literally written in this string below: 
